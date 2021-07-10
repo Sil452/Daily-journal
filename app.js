@@ -40,6 +40,9 @@ app.post("/compose", (req,res) => {
   res.redirect("/");
 });
 
+app.get('/posts/:post', (req, res) => {
+  console.log(req.params.post);
+});
 
 
 app.listen(3000, function() {

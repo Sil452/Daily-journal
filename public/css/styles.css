@@ -38,9 +38,17 @@
   color: #fff;
 }
 
-/* //compose page */
+
+/* compose page starts */
 
 .btn{
 background-color: var(--green) !important;
 color:#fff;
 }
+
+.btn:hover{
+  color: #fff !important;
+  background-color: #1abc9cc1 !important;
+}
+
+/* compose page ends */

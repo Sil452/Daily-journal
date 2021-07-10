@@ -30,19 +30,9 @@ app.get("/compose", (req, res) => {
   res.render('compose');
 });
 
-app.post("/", (req,res) => {
-  const title = req.body.title;
-  const post = req.body.post;
-  console.log(title, post)
+app.post("/compose", (req,res) => {
+  const post = {title: req.body.postTitle, content: req.body.postBody};
 });
-
-
-
-
-
-
-
-
 
 
 

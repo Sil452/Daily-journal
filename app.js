@@ -30,7 +30,10 @@ app.get("/compose", (req, res) => {
   res.render('compose');
 });
 
-
+app.post("/", (req,res) => {
+  const post = req.body.post
+  console.log(post)
+});
 
 
 

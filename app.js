@@ -17,7 +17,7 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
 app.get("/", (req, res) => {
-  res.render('home',{homeStartingContent: homeStartingContent});
+  res.render('home',{homeStartingContent: homeStartingContent, posts: posts});
 });
 
 app.get("/about", (req, res) => {
@@ -34,8 +34,10 @@ app.get("/compose", (req, res) => {
 
 app.post("/compose", (req,res) => {
   const post = {title: req.body.postTitle, content: req.body.postBody};
-  posts.push(post);
-  console.log(posts)
+  if(post.content.replace(/\s/g, '').length > 0 && post.content.replace(/\s/g, '').length > 0 ){ 
+    posts.push(post);
+  };
+  res.redirect("/");
 });
 
 

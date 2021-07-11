@@ -40,8 +40,14 @@ app.post("/compose", (req,res) => {
   res.redirect("/");
 });
 
-app.get('/posts/:post', (req, res) => {
-  console.log(req.params.post);
+app.get('/posts/:postName', (req, res) => {
+ posts.forEach(function(post){
+   if(post.title == req.params.postName){
+     console.log("Match found")
+   }else{
+     console.log("Not a match")
+   }
+ });
 });
 
 

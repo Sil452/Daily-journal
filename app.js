@@ -2,6 +2,7 @@
 
 const express = require("express");
 const ejs = require("ejs");
+const _ = require('lodash');
 
 const posts = [];
 
@@ -42,7 +43,7 @@ app.post("/compose", (req,res) => {
 
 app.get('/posts/:postName', (req, res) => {
  posts.forEach(function(post){
-   if(post.title == req.params.postName){
+   if(_.lowerCase(post.title) == _.lowerCase(req.params.postName)){
      console.log("Match found")
    }else{
      console.log("Not a match")

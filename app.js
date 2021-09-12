@@ -1,6 +1,7 @@
 //jshint esversion:6
 
 const express = require("express");
+const mongoose = require("mongoose");
 const ejs = require("ejs");
 const _ = require('lodash');
 
@@ -16,6 +17,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
+
+mongoose.connect("mongodb://localhost:27017/blogDB");
+
+const postsSchema = {
+  title : String
+};
+
+const Post = mongoose.model("Post", postsSchema);
+
+const post1 = new Post({
+  title: "This is my first post!"
+});
 
 app.get("/", (req, res) => {
   res.render('home',{homeStartingContent: homeStartingContent, posts: posts});

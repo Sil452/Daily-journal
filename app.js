@@ -26,7 +26,12 @@ const postsSchema = {
 const Post = mongoose.model("Post", postsSchema);
 
 app.get("/", (req, res) => {
-  res.render('home',{homeStartingContent: homeStartingContent, posts: posts});
+
+  Post.find({}, function(err, posts){
+
+    res.render("home", { homeStartingContent: homeStartingContent,posts: posts});
+  
+  });
 });
 
 app.get("/about", (req, res) => {

@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 
   Post.find({}, function(err, posts){
 
-    res.render("home", { homeStartingContent: homeStartingContent,posts: posts});
+    res.render("home", { homeStartingContent: homeStartingContent, posts: posts});
   
   });
 });
@@ -62,17 +62,18 @@ app.post("/compose", (req,res) => {
   
 });
 
-app.get('/posts/:postName', (req, res) => {
+app.get('/posts/:postId', (req, res) => {
 
-  posts.forEach(function(post){
+    const requestedPostId = req.params.postId;
+    
+    Post.findOne({_id: requestedPostId}, function(err, post){
+      res.render("post", {
+        title: post.title,
+        content: post.content
+      });
+    });
 
-    const storedTitle = _.lowerCase(post.title).replace(/\s/g, '');
-    const requestTitle = _.lowerCase(req.params.postName).replace(/\s/g, '');
-
-    if( storedTitle == requestTitle ){
-      res.render('post', {postTitle: post.title, postContent: post.content })
-    };
-  });
+   
 });
 
 
